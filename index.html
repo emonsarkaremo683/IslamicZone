@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslamicZone - Islamic Knowledge Hub</title>
+     <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="assets/image/logo.png" alt="IslamicZone" class="logo-img" width="50" height="50">
+                <span class="brand-text">IslamicZone</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="prayer-times.html">Prayer Times</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="qibla.html">Qibla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="duas.html">Duas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quran.html">Qur'an</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hadith">Hadith</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/highlights.html#ramadan">Ramadan</a></li>
+                            <li><a class="dropdown-item" href="/highlights.html#hajj">Hajj & Umrah</a></li>
+                            <li><a class="dropdown-item" href="/highlights.html#zakat">Zakat</a></li>
+                            <li><a class="dropdown-item" href="#knowledge">Knowledge</a></li>
+                            <li><a class="dropdown-item" href="#multimedia">Multimedia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="geometric-pattern"></div>
+        <div class="mosque-silhouette"></div>
+        <div class="crescent-moon"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="greeting-text mb-3">
+                        <span class="arabic-greeting">السلام عليكم</span>
+                        <span class="english-greeting">Assalamu Alaikum</span>
+                    </div>
+                    <h1 class="display-3 fw-bold text-white mb-4 hero-title">
+                        Welcome to Islamic Knowledge Hub
+                    </h1>
+                    <div class="quran-verse mb-4">
+                        <p class="arabic-calligraphy">وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ</p>
+                        <p class="verse-translation">"And I did not create the jinn and mankind except to worship Me."
+                        </p>
+                        <p class="verse-reference">— Quran 51:56</p>
+                    </div>
+                    <div class="hero-buttons d-flex gap-3 justify-content-center flex-wrap">
+                        <!-- Qur'an Button -->
+                        <button type="button" class="btn btn-golden btn-lg" onclick="scrollToQuran()">
+                            <i class="fas fa-book-quran me-2"></i> Read Qur'an
+                        </button>
+
+                        <!-- Prayer Times Button -->
+                        <button type="button" class="btn btn-teal btn-lg" onclick="scrollToPrayerTimes()">
+                            <i class="fas fa-clock me-2"></i> View Prayer Times
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayer Times Widget -->
+    <section id="prayer-times" class="prayer-times-section py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-mosque me-2"></i>Prayer Times
+            </h2>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card" data-prayer="fajr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h4>Fajr</h4>
+                        <div class="prayer-time" id="fajr-time">05:30 AM</div>
+                        <div class="prayer-status" id="fajr-status">Upcoming</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card" data-prayer="dhuhr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h4>Dhuhr</h4>
+                        <div class="prayer-time" id="dhuhr-time">12:15 PM</div>
+                        <div class="prayer-status" id="dhuhr-status">Upcoming</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card" data-prayer="asr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h4>Asr</h4>
+                        <div class="prayer-time" id="asr-time">03:45 PM</div>
+                        <div class="prayer-status" id="asr-status">Upcoming</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card" data-prayer="maghrib">
+                        <div class="prayer-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h4>Maghrib</h4>
+                        <div class="prayer-time" id="maghrib-time">06:20 PM</div>
+                        <div class="prayer-status" id="maghrib-status">Upcoming</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card" data-prayer="isha">
+                        <div class="prayer-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h4>Isha</h4>
+                        <div class="prayer-time" id="isha-time">07:45 PM</div>
+                        <div class="prayer-status" id="isha-status">Upcoming</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="prayer-card countdown-card">
+                        <div class="prayer-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <h4>Next Prayer</h4>
+                        <div class="countdown-timer" id="countdown">00:00:00</div>
+                        <div class="next-prayer-name" id="next-prayer">Fajr</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="prayer-times.html" class="btn btn-outline-primary">
+                    <i class="fas fa-calendar-alt me-2"></i>View Full Schedule
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Sections -->
+    <section class="featured-sections py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-star me-2"></i>Featured Sections
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card" onclick="scrollToQuran()">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-quran"></i>
+                        </div>
+                        <h3>Read Qur'an</h3>
+                        <p>Read the Holy Quran in Arabic with translations in English and Bengali. Listen to beautiful
+                            recitations.</p>
+                        <div class="feature-badge">
+                            <i class="fas fa-language me-1"></i>3 Languages
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" onclick="scrollToHadith()">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Read Hadith</h3>
+                        <p>Explore authentic Hadith collections categorized by topics. Learn from the teachings of
+                            Prophet Muhammad (PBUH).</p>
+                        <div class="feature-badge">
+                            <i class="fas fa-list me-1"></i>By Category
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" onclick="showDuaOfDay()">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <h3>Dua of the Day</h3>
+                        <p id="dua-text">"O Allah, grant us good in this world and good in the Hereafter, and save us
+                            from the punishment of the Fire."</p>
+                        <div class="feature-badge">
+                            <i class="fas fa-calendar-day me-1"></i>Daily Updated
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Highlights -->
+    <section class="highlights-section py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-gem me-2"></i>Special Highlights
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="highlight-card ramadan-card" onclick="window.location.href='highlights.html#ramadan'">
+                        <div class="highlight-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h3>Ramadan Countdown</h3>
+                        <div class="countdown-display" id="ramadan-countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="ramadan-days">00</span>
+                                <span class="countdown-label">Days</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="ramadan-hours">00</span>
+                                <span class="countdown-label">Hours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="ramadan-minutes">00</span>
+                                <span class="countdown-label">Minutes</span>
+                            </div>
+                        </div>
+                        <p class="mt-3">Until the blessed month of Ramadan begins</p>
+                        <div class="highlight-link">
+                            <i class="fas fa-arrow-right me-1"></i>View Full Countdown
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="highlight-card hajj-card" onclick="window.location.href='highlights.html#hajj'">
+                        <div class="highlight-icon">
+                            <i class="fas fa-kaaba"></i>
+                        </div>
+                        <h3>Hajj Guide</h3>
+                        <p>Complete step-by-step guide for Hajj and Umrah. Learn the rituals, duas, and important
+                            information.</p>
+                        <div class="highlight-link">
+                            <i class="fas fa-arrow-right me-1"></i>View Guide
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="highlight-card zakat-card" onclick="window.location.href='highlights.html#zakat'">
+                        <div class="highlight-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Zakat Calculator</h3>
+                        <p>Calculate your Zakat easily with our interactive calculator. Ensure you fulfill this
+                            important pillar of Islam.</p>
+                        <div class="highlight-link">
+                            <i class="fas fa-arrow-right me-1"></i>Calculate Now
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quran Section -->
+    <section id="quran" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-book-open me-2"></i>Qur'an
+            </h2>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="feature-card" onclick="window.location.href='quran.html'" style="max-width: 600px; margin: 0 auto;">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-quran"></i>
+                        </div>
+                        <h3>Read the Holy Qur'an</h3>
+                        <p>Read all 114 surahs (chapters) of the Holy Qur'an in Arabic with translations in English and Bengali. Listen to beautiful recitations and explore the divine words.</p>
+                        <div class="feature-badge">
+                            <i class="fas fa-language me-1"></i>3 Languages Available
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-golden btn-lg">
+                                <i class="fas fa-arrow-right me-2"></i>View All Surahs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Hadith Section Placeholder -->
+    <section id="hadith" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-book-open me-2"></i>Hadith Collections
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Sahih Bukhari</h4>
+                        <p>Authentic collection of Hadith compiled by Imam Bukhari</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Sahih Muslim</h4>
+                        <p>Authentic collection of Hadith compiled by Imam Muslim</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Sunan Abu Dawood</h4>
+                        <p>Collection of Hadith compiled by Abu Dawood</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer-section">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-mosque me-2"></i>IslamicZone
+                    </h5>
+                    <p class="footer-text">
+                        Your comprehensive Islamic knowledge hub. Learn, explore, and grow in your faith.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="quran.html">Qur'an</a></li>
+                        <li><a href="#hadith">Hadith</a></li>
+                        <li><a href="prayer-times.html">Prayer Times</a></li>
+                        <li><a href="highlights.html#ramadan">Ramadan</a></li>
+                        <li><a href="highlights.html#hajj">Hajj & Umrah</a></li>
+                        <li><a href="highlights.html#zakat">Zakat Calculator</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Newsletter</h5>
+                    <p class="footer-text">Subscribe to receive daily Islamic reminders and updates.</p>
+                    <div class="newsletter-form">
+                        <input type="email" class="form-control mb-2" placeholder="Your email address">
+                        <button class="btn btn-golden w-100">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-4 border-top">
+                <p class="mb-0">
+                    <i class="fas fa-heart text-danger me-1"></i>
+                    Made with love for the Muslim community
+                </p>
+                <p class="mb-0 mt-2">
+                    <small>&copy; 2025 IslamicZone. All rights reserved. <br>
+
+                    </small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main Script (Quran functionality) -->
+    <script src="script.js"></script>
+
+    <!-- Qibla Compass -->
+    <script src="qibla.js"></script>
+
+    <!-- highlights.js -->
+    <script src="highlights.js"></script>
+</body>
+
+</html>

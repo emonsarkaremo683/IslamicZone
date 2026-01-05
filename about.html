@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - IslamicZone</title>
+     <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .mission-vision-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--golden), var(--teal));
+        }
+
+        .mission-vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .mission-vision-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--golden), var(--teal));
+            color: white;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .values-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--golden);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--teal);
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--golden);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .story-section {
+            background: white;
+        }
+
+        .story-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #6c757d;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .arabic-quote {
+            font-family: 'Amiri', 'Noto Sans Arabic', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 128, 128, 0.1));
+            border-radius: 15px;
+            border-right: 5px solid var(--golden);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/image/logo.png" alt="IslamicZone" class="logo-img" width="50" height="50">
+                <span class="brand-text">IslamicZone</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="prayer-times.html">Prayer Times</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="qibla.html">Qibla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="duas.html">Duas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quran.html">Qur'an</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 fw-bold mb-3">
+                        <i class="fas fa-mosque me-3"></i>About IslamicZone
+                    </h1>
+                    <p class="lead">Your comprehensive Islamic knowledge hub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="mission-vision-card">
+                        <div class="mission-vision-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h2 class="text-center mb-4" style="color: var(--primary-color);">Our Mission</h2>
+                        <p class="text-center" style="font-size: 1.1rem; line-height: 1.8; color: #6c757d;">
+                            To provide accessible, accurate, and comprehensive Islamic resources to Muslims worldwide, 
+                            fostering spiritual growth, knowledge, and connection with our faith through modern technology.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mission-vision-card">
+                        <div class="mission-vision-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h2 class="text-center mb-4" style="color: var(--primary-color);">Our Vision</h2>
+                        <p class="text-center" style="font-size: 1.1rem; line-height: 1.8; color: #6c757d;">
+                            To become the most trusted and comprehensive digital platform for Islamic knowledge, 
+                            serving millions of Muslims globally and making Islamic resources accessible to everyone, 
+                            regardless of location or background.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-book-open me-2"></i>Our Story
+            </h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="story-content">
+                        <p>
+                            IslamicZone was born from a simple yet powerful idea: to make authentic Islamic knowledge 
+                            accessible to every Muslim, everywhere. In an era where technology connects us like never before, 
+                            we recognized the need for a comprehensive digital platform that brings together the essential 
+                            aspects of Islamic life.
+                        </p>
+                        <div class="arabic-quote">
+                            وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ
+                        </div>
+                        <p>
+                            Our platform combines traditional Islamic scholarship with modern web technology, providing 
+                            accurate prayer times, Qibla direction, Quranic texts with translations, authentic duas, 
+                            and educational resources. We believe that technology should serve our faith and make it 
+                            easier for Muslims to practice their religion in their daily lives.
+                        </p>
+                        <p>
+                            Whether you're looking for prayer times in your location, reading the Quran in multiple 
+                            languages, finding the Qibla direction, or learning about important Islamic practices, 
+                            IslamicZone is here to support your spiritual journey.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1000">0</div>
+                        <div class="stat-label">Daily Users</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="114">114</div>
+                        <div class="stat-label">Quran Chapters</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="3">3</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="24">24</div>
+                        <div class="stat-label">Hours Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="values-section py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-heart me-2"></i>Our Core Values
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Authenticity</h4>
+                        <p style="color: #6c757d;">
+                            We ensure all content is sourced from authentic Islamic texts and verified by scholars, 
+                            maintaining the highest standards of accuracy.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Accessibility</h4>
+                        <p style="color: #6c757d;">
+                            Making Islamic resources available to everyone, regardless of location, language, 
+                            or background. Free and accessible to all.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Excellence</h4>
+                        <p style="color: #6c757d;">
+                            Committed to continuous improvement and excellence in every aspect of our platform, 
+                            from design to content quality.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Community</h4>
+                        <p style="color: #6c757d;">
+                            Building a supportive community of Muslims worldwide, fostering unity and shared 
+                            spiritual growth.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Privacy</h4>
+                        <p style="color: #6c757d;">
+                            Respecting user privacy and data security. We don't track personal information 
+                            unnecessarily and prioritize user confidentiality.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Innovation</h4>
+                        <p style="color: #6c757d;">
+                            Embracing modern technology to enhance the user experience while maintaining 
+                            respect for Islamic traditions and values.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-mosque me-2"></i>IslamicZone
+                    </h5>
+                    <p class="footer-text">
+                        Your comprehensive Islamic knowledge hub. Learn, explore, and grow in your faith.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="quran.html">Qur'an</a></li>
+                        <li><a href="index.html#hadith">Hadith</a></li>
+                        <li><a href="prayer-times.html">Prayer Times</a></li>
+                        <li><a href="highlights.html#ramadan">Ramadan</a></li>
+                        <li><a href="highlights.html#hajj">Hajj & Umrah</a></li>
+                        <li><a href="highlights.html#zakat">Zakat Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-4 border-top">
+                <p class="mb-0">
+                    <i class="fas fa-heart text-danger me-1"></i>
+                    Made with love for the Muslim community
+                </p>
+                <p class="mb-0 mt-2">
+                    <small>&copy; 2025 IslamicZone. All rights reserved.</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script for navbar scroll effect and stats animation -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('mainNav');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.pageYOffset > 100);
+            });
+        }
+
+        // Animate stats counter
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for stats animation
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber && !statNumber.classList.contains('animated')) {
+                        statNumber.classList.add('animated');
+                        animateCounter(statNumber);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+
+</html>
+

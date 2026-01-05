@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Highlights - IslamicZone</title>
+     <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .highlight-hero {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 30%, #8b4c8f 70%, #1e3d5f 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .highlight-section {
+            padding: 4rem 0;
+        }
+        
+        .highlight-content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .ramadan-countdown-large {
+            background: linear-gradient(135deg, var(--golden) 0%, #b8941f 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .countdown-large-item {
+            display: inline-block;
+            margin: 0 1.5rem;
+            text-align: center;
+        }
+        
+        .countdown-large-number {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            display: block;
+            line-height: 1;
+        }
+        
+        .countdown-large-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+        
+        .hajj-steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .hajj-step {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid var(--teal);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .hajj-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hajj-step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--teal);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+        
+        .zakat-calculator {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        
+        .zakat-input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .zakat-result {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .zakat-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .zakat-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--golden);
+        }
+        
+        .info-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--golden);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .countdown-large-number {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-large-item {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-mosque me-2"></i>
+                <span class="brand-text">IslamicZone</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="highlights.html">Highlights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#prayer-times">Prayer Times</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quran.html">Qur'an</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="highlight-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 fw-bold mb-3">
+                        <i class="fas fa-gem me-3"></i>Special Highlights
+                    </h1>
+                    <p class="lead">Explore Ramadan, Hajj, Zakat, and more Islamic resources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ramadan Section -->
+    <section id="ramadan" class="highlight-section">
+        <div class="container">
+            <div class="highlight-content-card">
+                <div class="text-center mb-4">
+                    <div class="highlight-icon mb-3">
+                        <i class="fas fa-moon" style="font-size: 4rem; color: var(--golden);"></i>
+                    </div>
+                    <h2 class="section-title">Ramadan Countdown</h2>
+                    <p class="lead text-muted">The blessed month of fasting and spiritual reflection</p>
+                </div>
+                
+                <div class="ramadan-countdown-large">
+                    <div class="countdown-large-item">
+                        <span class="countdown-large-number" id="ramadan-days-large">00</span>
+                        <span class="countdown-large-label">Days</span>
+                    </div>
+                    <div class="countdown-large-item">
+                        <span class="countdown-large-number" id="ramadan-hours-large">00</span>
+                        <span class="countdown-large-label">Hours</span>
+                    </div>
+                    <div class="countdown-large-item">
+                        <span class="countdown-large-number" id="ramadan-minutes-large">00</span>
+                        <span class="countdown-large-label">Minutes</span>
+                    </div>
+                    <div class="countdown-large-item">
+                        <span class="countdown-large-number" id="ramadan-seconds-large">00</span>
+                        <span class="countdown-large-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <div class="info-box mt-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>About Ramadan</h5>
+                    <p class="mb-0">
+                        Ramadan is the ninth month of the Islamic calendar, observed by Muslims worldwide as a month of fasting, 
+                        prayer, reflection, and community. It commemorates the first revelation of the Quran to Prophet Muhammad (PBUH).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hajj Section -->
+    <section id="hajj" class="highlight-section bg-light">
+        <div class="container">
+            <div class="highlight-content-card">
+                <div class="text-center mb-4">
+                    <div class="highlight-icon mb-3">
+                        <i class="fas fa-kaaba" style="font-size: 4rem; color: var(--teal);"></i>
+                    </div>
+                    <h2 class="section-title">Hajj & Umrah Guide</h2>
+                    <p class="lead text-muted">Complete step-by-step guide for performing Hajj and Umrah</p>
+                </div>
+                
+                <h4 class="mb-4">Hajj Steps (Pillar by Pillar)</h4>
+                <ul class="hajj-steps">
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">1</span>
+                        <strong>Ihram</strong> - Enter the state of Ihram at the designated Miqat point. Make intention for Hajj and recite Talbiyah.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">2</span>
+                        <strong>Tawaf</strong> - Perform seven circuits around the Kaaba, starting and ending at the Black Stone (Hajar al-Aswad).
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">3</span>
+                        <strong>Sa'i</strong> - Walk seven times between Safa and Marwah hills, commemorating Hajar's search for water.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">4</span>
+                        <strong>Wuquf at Arafat</strong> - Stand in prayer and supplication at the plain of Arafat on the 9th of Dhul-Hijjah.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">5</span>
+                        <strong>Muzdalifah</strong> - Spend the night at Muzdalifah and collect pebbles for the stoning ritual.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">6</span>
+                        <strong>Ramy al-Jamarat</strong> - Stone the three pillars representing Satan in Mina on the 10th, 11th, and 12th of Dhul-Hijjah.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">7</span>
+                        <strong>Sacrifice (Qurbani)</strong> - Offer an animal sacrifice or have it done on your behalf.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">8</span>
+                        <strong>Halq or Taqsir</strong> - Men shave their heads (Halq) or trim their hair (Taqsir). Women trim a small portion of their hair.
+                    </li>
+                    <li class="hajj-step">
+                        <span class="hajj-step-number">9</span>
+                        <strong>Farewell Tawaf</strong> - Perform a final Tawaf around the Kaaba before leaving Mecca.
+                    </li>
+                </ul>
+                
+                <div class="info-box">
+                    <h5><i class="fas fa-lightbulb me-2"></i>Important Notes</h5>
+                    <ul class="mb-0">
+                        <li>Hajj is obligatory once in a lifetime for Muslims who are physically and financially able</li>
+                        <li>Umrah can be performed at any time of the year</li>
+                        <li>Consult with a knowledgeable scholar or guide before performing Hajj</li>
+                        <li>Ensure all necessary documents and vaccinations are completed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zakat Section -->
+    <section id="zakat" class="highlight-section">
+        <div class="container">
+            <div class="highlight-content-card">
+                <div class="text-center mb-4">
+                    <div class="highlight-icon mb-3">
+                        <i class="fas fa-calculator" style="font-size: 4rem; color: var(--primary-color);"></i>
+                    </div>
+                    <h2 class="section-title">Zakat Calculator</h2>
+                    <p class="lead text-muted">Calculate your Zakat obligation accurately</p>
+                </div>
+                
+                <div class="zakat-calculator">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Cash & Bank Savings</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="cash-amount" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                            </div>
+                            
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Gold (in grams)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="gold-amount" placeholder="0.00" min="0" step="0.01">
+                                    <span class="input-group-text">grams</span>
+                                </div>
+                                <small class="text-muted">Current gold price per gram: $<span id="gold-price">65.00</span></small>
+                            </div>
+                            
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Silver (in grams)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="silver-amount" placeholder="0.00" min="0" step="0.01">
+                                    <span class="input-group-text">grams</span>
+                                </div>
+                                <small class="text-muted">Current silver price per gram: $<span id="silver-price">0.85</span></small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Stocks & Investments</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="stocks-amount" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                            </div>
+                            
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Business Assets</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="business-amount" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                            </div>
+                            
+                            <div class="zakat-input-group">
+                                <label class="form-label fw-bold">Other Assets</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="other-amount" placeholder="0.00" min="0" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-golden btn-lg" onclick="calculateZakat()">
+                            <i class="fas fa-calculator me-2"></i>Calculate Zakat
+                        </button>
+                    </div>
+                    
+                    <div class="zakat-result" id="zakat-result">
+                        <h4>Your Zakat Amount</h4>
+                        <div class="zakat-amount" id="zakat-amount">$0.00</div>
+                        <p class="mb-0">2.5% of your total wealth</p>
+                        <small class="opacity-75">Nisab threshold: $<span id="nisab-amount">4,000</span></small>
+                    </div>
+                </div>
+                
+                <div class="info-box mt-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>About Zakat</h5>
+                    <p>
+                        Zakat is one of the Five Pillars of Islam. It is obligatory for Muslims who meet the Nisab threshold 
+                        (minimum wealth) to pay 2.5% of their wealth annually. Zakat purifies wealth and helps those in need.
+                    </p>
+                    <p class="mb-0">
+                        <strong>Nisab:</strong> The minimum amount of wealth one must have before Zakat becomes obligatory. 
+                        It is equivalent to 87.48 grams of gold or 612.36 grams of silver.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-mosque me-2"></i>IslamicZone
+                    </h5>
+                    <p class="footer-text">
+                        Your comprehensive Islamic knowledge hub. Learn, explore, and grow in your faith.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="highlights.html">Special Highlights</a></li>
+                        <li><a href="index.html#prayer-times">Prayer Times</a></li>
+                        <li><a href="quran.html">Qur'an</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#ramadan">Ramadan</a></li>
+                        <li><a href="#hajj">Hajj & Umrah</a></li>
+                        <li><a href="#zakat">Zakat Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-4 border-top">
+                <p class="mb-0">
+                    <i class="fas fa-heart text-danger me-1"></i>
+                    Made with love for the Muslim community
+                </p>
+                <p class="mb-0 mt-2">
+                    <small>&copy; 2024 IslamicZone. All rights reserved.</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Adhan.js for Prayer Times Calculation -->
+    <script src="https://cdn.jsdelivr.net/npm/adhan@4.0.7/dist/adhan.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="highlights.js"></script>
+</body>
+</html>
+

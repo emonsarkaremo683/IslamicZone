@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surah - IslamicZone</title>
+     <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --surah-primary: #2563eb;
+            --surah-primary-dark: #1e40af;
+            --surah-golden: #f59e0b;
+            --surah-teal: #14b8a6;
+            --surah-bg: #f8fafc;
+            --surah-card: #ffffff;
+            --surah-text: #1e293b;
+            --surah-text-light: #64748b;
+            --surah-border: #e2e8f0;
+            --surah-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --surah-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--surah-bg);
+            padding-top: 76px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--surah-text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--surah-primary) 0%, var(--surah-primary-dark) 100%) !important;
+            box-shadow: var(--surah-shadow-lg);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--surah-shadow);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: white !important;
+        }
+
+        .navbar-brand .brand-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .navbar-brand i {
+            color: #fbbf24;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+        }
+
+        /* Surah Header */
+        .surah-header {
+            background: linear-gradient(135deg, var(--surah-primary) 0%, var(--surah-primary-dark) 100%);
+            color: white;
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            margin-top: -76px;
+            padding-top: calc(76px + 4rem);
+        }
+
+        .surah-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.03)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .surah-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .surah-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-family: 'Amiri', serif;
+            letter-spacing: -0.02em;
+        }
+
+        .surah-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .surah-info-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+        }
+
+        /* Controls Bar */
+        .controls-bar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--surah-shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--surah-border);
+        }
+
+        .controls-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .controls-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .controls-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--surah-text-light);
+            margin-bottom: 0.625rem;
+            display: block;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, var(--surah-primary) 0%, var(--surah-primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 0.625rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            padding-right: 2.75rem;
+            border: 1.5px solid var(--surah-border);
+            border-radius: 12px;
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+            background: var(--surah-bg);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--surah-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: white;
+        }
+
+        .search-box input::placeholder {
+            color: var(--surah-text-light);
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--surah-text-light);
+            font-size: 0.875rem;
+            pointer-events: none;
+        }
+
+        .search-box .clear-search {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--surah-text-light);
+            cursor: pointer;
+            padding: 0.25rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            width: 24px;
+            height: 24px;
+        }
+
+        .search-box .clear-search:hover {
+            background: var(--surah-bg);
+            color: var(--surah-text);
+        }
+
+        .search-box .clear-search.show {
+            display: flex;
+        }
+
+        .search-results-info {
+            font-size: 0.875rem;
+            color: var(--surah-text-light);
+            margin-top: 0.5rem;
+            display: none;
+            padding: 0.5rem 0.75rem;
+            background: var(--surah-bg);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .search-results-info.show {
+            display: block;
+        }
+
+        mark {
+            background-color: rgba(245, 158, 11, 0.3) !important;
+            padding: 0.125rem 0.25rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .controls-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.375rem;
+            background: var(--surah-bg);
+            padding: 0.375rem;
+            border-radius: 12px;
+            border: 1px solid var(--surah-border);
+        }
+
+        .lang-btn {
+            padding: 0.625rem 1.125rem;
+            border: none;
+            background: transparent;
+            color: var(--surah-text);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .lang-btn.active {
+            background: var(--surah-primary);
+            color: white;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+        }
+
+        .font-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            background: var(--surah-bg);
+            padding: 0.375rem;
+            border-radius: 12px;
+            border: 1px solid var(--surah-border);
+        }
+
+        .font-size-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: white;
+            color: var(--surah-text);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            box-shadow: var(--surah-shadow);
+            flex-shrink: 0;
+        }
+
+        .font-size-btn:hover {
+            background: var(--surah-primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .font-size-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-actions {
+            display: flex;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--surah-bg);
+            border: 1.5px solid var(--surah-border);
+            color: var(--surah-text);
+            padding: 0.625rem 1.125rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .control-btn:hover {
+            background: var(--surah-primary);
+            color: white;
+            border-color: var(--surah-primary);
+            transform: translateY(-1px);
+        }
+
+        .control-btn.active {
+            background: var(--surah-primary);
+            color: white;
+            border-color: var(--surah-primary);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Verse Container */
+        .verse-container {
+            background: white;
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--surah-shadow);
+            border: 1px solid var(--surah-border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .verse-container:hover {
+            box-shadow: var(--surah-shadow-lg);
+            transform: translateY(-2px);
+            border-color: var(--surah-primary);
+        }
+
+        .verse-container.highlighted {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(245, 158, 11, 0.03) 100%);
+            border-color: var(--surah-golden);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        .verse-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--surah-border);
+        }
+
+        .verse-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--surah-golden) 0%, var(--surah-teal) 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .verse-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .verse-action-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--surah-bg);
+            color: var(--surah-text);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+        .verse-action-btn:hover {
+            background: var(--surah-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .verse-action-btn.favorited {
+            background: var(--surah-golden);
+            color: white;
+        }
+
+        .verse-arabic {
+            font-family: 'Amiri', 'Noto Sans Arabic', serif;
+            font-size: 1.875rem;
+            direction: rtl;
+            text-align: right;
+            line-height: 2.5;
+            margin-bottom: 1.5rem;
+            color: var(--surah-text);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .verse-translation {
+            font-size: 1.0625rem;
+            line-height: 1.75;
+            color: var(--surah-text-light);
+            padding: 1.25rem;
+            background: var(--surah-bg);
+            border-radius: 12px;
+            border-left: 3px solid var(--surah-golden);
+            font-weight: 400;
+        }
+
+        /* Reading Progress */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--surah-golden), var(--surah-teal));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Scroll to Top Button */
+        .jump-to-verse {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--surah-primary), var(--surah-teal));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: var(--surah-shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 99;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jump-to-verse:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .jump-to-verse.show {
+            display: flex;
+        }
+
+        /* Loading State */
+        .loading-spinner {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .navbar {
+                padding: 0.75rem 0;
+            }
+
+            .surah-header {
+                padding: calc(70px + 3rem) 0 2rem;
+                margin-top: -70px;
+                margin-bottom: 1.5rem;
+            }
+
+            .controls-bar {
+                padding: 1.25rem;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .controls-col {
+                min-width: 100%;
+            }
+
+            .search-container {
+                max-width: 100%;
+                min-width: 100%;
+            }
+
+            .control-actions {
+                width: 100%;
+            }
+
+            .control-btn {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .surah-title {
+                font-size: 2rem;
+            }
+
+            .surah-info {
+                font-size: 0.9rem;
+                gap: 0.5rem;
+            }
+
+            .surah-info-badge {
+                padding: 0.4rem 0.875rem;
+                font-size: 0.85rem;
+            }
+
+            .controls-bar {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .controls-bar .d-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .control-group {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+            }
+
+            .back-button {
+                width: 100%;
+                justify-content: center;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .language-selector {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .lang-btn {
+                flex: 1;
+            }
+
+            .font-size-controls {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .verse-container {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+                border-radius: 12px;
+            }
+
+            .verse-header {
+                margin-bottom: 1.25rem;
+                padding-bottom: 0.875rem;
+            }
+
+            .verse-number {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+
+            .verse-action-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.8rem;
+            }
+
+            .verse-arabic {
+                font-size: 1.625rem;
+                line-height: 2.25;
+                margin-bottom: 1.25rem;
+            }
+
+            .verse-translation {
+                font-size: 1rem;
+                padding: 1rem;
+                line-height: 1.7;
+            }
+
+            .jump-to-verse {
+                width: 48px;
+                height: 48px;
+                font-size: 1.125rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 66px;
+            }
+
+            .surah-header {
+                padding: calc(66px + 2.5rem) 0 1.75rem;
+                margin-top: -66px;
+            }
+
+            .surah-title {
+                font-size: 1.75rem;
+            }
+
+            .surah-info {
+                font-size: 0.85rem;
+            }
+
+            .controls-bar {
+                padding: 0.875rem;
+            }
+
+            .back-button {
+                font-size: 0.9rem;
+                padding: 0.5625rem 1rem;
+            }
+
+            .verse-container {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .verse-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.875rem;
+            }
+
+            .verse-action-btn {
+                width: 32px;
+                height: 32px;
+            }
+
+            .verse-arabic {
+                font-size: 1.5rem;
+                line-height: 2;
+                margin-bottom: 1rem;
+            }
+
+            .verse-translation {
+                font-size: 0.9375rem;
+                padding: 0.875rem;
+                line-height: 1.65;
+            }
+
+            .container {
+                padding-left: 0.875rem;
+                padding-right: 0.875rem;
+            }
+        }
+
+        /* Dark Mode Support */
+        body.dark-mode {
+            --surah-bg: #0f172a;
+            --surah-card: #1e293b;
+            --surah-text: #f1f5f9;
+            --surah-text-light: #cbd5e1;
+            --surah-border: #334155;
+            background: var(--surah-bg);
+            color: var(--surah-text);
+        }
+
+        body.dark-mode .verse-container {
+            background: var(--surah-card);
+            border-color: var(--surah-border);
+        }
+
+        body.dark-mode .controls-bar {
+            background: var(--surah-card);
+            border-color: var(--surah-border);
+        }
+
+        body.dark-mode .verse-translation {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        body.dark-mode .search-box input {
+            background: var(--surah-bg);
+            border-color: var(--surah-border);
+            color: var(--surah-text);
+        }
+
+        body.dark-mode .search-box input:focus {
+            background: var(--surah-card);
+        }
+
+        body.dark-mode .font-size-btn,
+        body.dark-mode .control-btn {
+            background: var(--surah-card);
+            border-color: var(--surah-border);
+            color: var(--surah-text);
+        }
+
+        body.dark-mode .language-selector,
+        body.dark-mode .font-size-controls {
+            background: var(--surah-bg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-mosque me-2"></i>
+                <span class="brand-text">IslamicZone</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quran.html">Qur'an</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Surah Header -->
+    <div class="surah-header">
+        <div class="container surah-header-content">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="surah-title" id="surahTitle">Loading...</h1>
+                    <div class="surah-info" id="surahInfo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Controls Bar -->
+        <div class="controls-bar" id="controlsBar">
+            <!-- Back Button -->
+            <div class="controls-section">
+                <button class="back-button" onclick="window.location.href='quran.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Surahs</span>
+                </button>
+            </div>
+
+            <!-- Search Section -->
+            <div class="controls-section">
+                <label class="controls-section-title">
+                    <i class="fas fa-search me-1"></i>Search Verses
+                </label>
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="verseSearch" placeholder="Type to search in verses..." class="form-control">
+                        <button class="clear-search" id="clearSearch" title="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-results-info" id="searchResultsInfo"></div>
+                </div>
+            </div>
+
+            <!-- Controls Row -->
+            <div class="controls-row">
+                <!-- Language Selection -->
+                <div class="controls-col">
+                    <div class="control-item">
+                        <label class="controls-section-title">
+                            <i class="fas fa-language me-1"></i>Language
+                        </label>
+                        <div class="language-selector">
+                            <button class="lang-btn active" data-lang="en" id="lang-en" title="English">
+                                <span>EN</span>
+                            </button>
+                            <button class="lang-btn" data-lang="bn" id="lang-bn" title="Bengali">
+                                <span>BN</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Size Controls -->
+                <div class="controls-col">
+                    <div class="control-item">
+                        <label class="controls-section-title">
+                            <i class="fas fa-text-height me-1"></i>Font Size
+                        </label>
+                        <div class="font-size-controls">
+                            <button class="font-size-btn" id="fontDecrease" title="Decrease font size">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="font-size-btn" id="fontReset" title="Reset font size">
+                                <i class="fas fa-undo-alt"></i>
+                            </button>
+                            <button class="font-size-btn" id="fontIncrease" title="Increase font size">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="controls-col">
+                    <div class="control-item">
+                        <label class="controls-section-title">
+                            <i class="fas fa-cog me-1"></i>Settings
+                        </label>
+                        <div class="control-actions">
+                            <button class="control-btn" id="darkModeToggle" title="Toggle dark mode">
+                                <i class="fas fa-moon"></i>
+                                <span>Dark</span>
+                            </button>
+                            <button class="control-btn" id="jumpToVerseBtn" title="Jump to verse">
+                                <i class="fas fa-location-arrow"></i>
+                                <span>Jump</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verses Container -->
+        <div id="versesContainer" class="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="jump-to-verse" id="jumpToTop" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Jump to Verse Modal -->
+    <div class="modal fade" id="jumpToVerseModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Jump to Verse</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="number" id="verseNumberInput" class="form-control" placeholder="Enter verse number..." min="1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="jumpToVerseConfirm">Go</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Surah Script -->
+    <script src="surah.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,973 @@
+/* Global Styles */
+:root {
+    --primary-color: #2c5f8d;
+    --secondary-color: #1a472a;
+    --accent-color: #d4af37;
+    --golden: #d4af37;
+    --teal: #008080;
+    --text-dark: #2c3e50;
+    --text-light: #ecf0f1;
+    --bg-light: #f8f9fa;
+    --sunset-orange: #ff6b35;
+    --sunset-pink: #f7931e;
+    --sunset-purple: #8b4c8f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    padding-top: 0;
+    overflow-x: hidden;
+}
+
+/* Add scroll offset for all sections with IDs (for anchor links) */
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+.arabic-text {
+    font-family: 'Amiri', 'Noto Sans Arabic', serif;
+    direction: rtl;
+    font-size: 2.5rem;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #1e3d5f 0%, var(--primary-color) 100%) !important;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    z-index: 1000; /* Ensure navbar is above everything */
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white !important;
+}
+
+.navbar-brand .logo-img {
+    background: linear-gradient(135deg, var(--golden) 0%, var(--teal) 100%);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+    filter: invert(1);
+}
+
+.navbar-brand .logo-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+}
+
+.navbar-brand .brand-text {
+    background: linear-gradient(135deg, var(--golden) 0%, #ffd700 50%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.navbar-brand i {
+    color: var(--golden);
+}
+
+.nav-link {
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--golden);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 30%, #8b4c8f 70%, #1e3d5f 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 80px); /* Account for navbar height */
+    display: flex;
+    align-items: center;
+    margin-top: 80px; /* Push hero section below fixed navbar */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Geometric Pattern Background */
+.geometric-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.1) 35px, rgba(255,255,255,0.1) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.1) 35px, rgba(255,255,255,0.1) 70px);
+    animation: patternMove 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes patternMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(35px, 35px); }
+}
+
+/* Mosque Silhouette */
+.mosque-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><path fill="rgba(0,0,0,0.2)" d="M0,400 L0,300 Q200,250 400,250 Q600,250 800,250 Q1000,250 1200,300 L1200,400 Z M400,250 L400,150 Q450,100 500,150 L500,250 M700,250 L700,150 Q750,100 800,150 L800,250 M500,150 Q600,50 700,150"/></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Crescent Moon */
+.crescent-moon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: -20px 0 0 rgba(255,255,255,0.2);
+    animation: moonFloat 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes moonFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.greeting-text {
+    margin-bottom: 1rem;
+}
+
+.arabic-greeting {
+    font-family: 'Amiri', 'Noto Sans Arabic', serif;
+    font-size: 2rem;
+    color: white;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.english-greeting {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.hero-title {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    margin-bottom: 2rem;
+}
+
+.quran-verse {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem 0;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.arabic-calligraphy {
+    font-family: 'Amiri', 'Noto Sans Arabic', serif;
+    font-size: 2rem;
+    color: white;
+    direction: rtl;
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 1rem;
+}
+
+.verse-translation {
+    color: rgba(255,255,255,0.95);
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.verse-reference {
+    color: var(--golden);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.hero-buttons {
+    margin-top: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.btn-golden {
+    background: linear-gradient(135deg, var(--golden) 0%, #b8941f 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    cursor: pointer;
+}
+
+.btn-golden:hover {
+    background: linear-gradient(135deg, #b8941f 0%, var(--golden) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    color: white;
+}
+
+.btn-teal {
+    background: linear-gradient(135deg, var(--teal) 0%, #006666 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(0, 128, 128, 0.4);
+    cursor: pointer;
+}
+
+.btn-teal:hover {
+    background: linear-gradient(135deg, #006666 0%, var(--teal) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 128, 128, 0.6);
+    color: white;
+}
+
+/* Prayer Times Section */
+.prayer-times-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    scroll-margin-top: 80px; /* Offset for fixed navbar when scrolling to anchor */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--golden), var(--teal));
+    border-radius: 2px;
+}
+
+.prayer-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.prayer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--golden), var(--teal));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.prayer-card:hover::before {
+    transform: scaleX(1);
+}
+
+.prayer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.prayer-card.active {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+    color: white;
+}
+
+.prayer-card.active::before {
+    transform: scaleX(1);
+    background: var(--golden);
+}
+
+.prayer-icon {
+    font-size: 3rem;
+    color: var(--golden);
+    margin-bottom: 1rem;
+}
+
+.prayer-card.active .prayer-icon {
+    color: white;
+}
+
+.prayer-card h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.prayer-card.active h4 {
+    color: white;
+}
+
+.prayer-time {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+}
+
+.prayer-card.active .prayer-time {
+    color: var(--golden);
+}
+
+.prayer-status {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.prayer-card.active .prayer-status {
+    color: rgba(255,255,255,0.9);
+}
+
+.countdown-card {
+    background: linear-gradient(135deg, var(--golden) 0%, #b8941f 100%);
+    color: white;
+}
+
+.countdown-card .prayer-icon {
+    color: white;
+}
+
+.countdown-card h4 {
+    color: white;
+}
+
+.countdown-timer {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    margin: 1rem 0;
+}
+
+.next-prayer-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Featured Sections */
+.featured-sections {
+    background: white;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+}
+
+.feature-card:hover::before {
+    transform: scale(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.feature-icon {
+    font-size: 4rem;
+    color: var(--golden);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--teal);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #6c757d;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.feature-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--golden), var(--teal));
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Highlights Section */
+.highlights-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.highlight-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 128, 128, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.highlight-card:hover::after {
+    opacity: 1;
+}
+
+.highlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.highlight-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.ramadan-card .highlight-icon {
+    color: var(--golden);
+}
+
+.hajj-card .highlight-icon {
+    color: var(--teal);
+}
+
+.zakat-card .highlight-icon {
+    color: var(--primary-color);
+}
+
+.highlight-card:hover .highlight-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.highlight-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.highlight-card p {
+    color: #6c757d;
+    line-height: 1.8;
+}
+
+.highlight-link {
+    margin-top: 1.5rem;
+    color: var(--teal);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.highlight-card:hover .highlight-link {
+    transform: translateX(5px);
+    color: var(--golden);
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--golden);
+    font-family: 'Courier New', monospace;
+}
+
+.countdown-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.surah-card {
+    cursor: pointer;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    align-items: center;
+    text-align: center;
+}
+
+.surah-card:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+    color: white;
+}
+
+.surah-card:hover .surah-number,
+.surah-card:hover .surah-name,
+.surah-card:hover .surah-info {
+    color: white;
+}
+
+.surah-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.surah-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Amiri', serif;
+}
+
+.surah-transliteration {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.surah-info {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.surah-type-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.type-meccan {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.type-medinan {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.surah-card:hover .type-meccan {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.surah-card:hover .type-medinan {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Verse Display */
+.verse-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.verse-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.verse-number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.verse-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.verse-text-arabic {
+    font-family: 'Amiri', 'Noto Sans Arabic', serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+/* Search Results */
+.search-result-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1e3d5f 0%, var(--primary-color) 100%);
+}
+
+/* Footer */
+.footer-section {
+    background: linear-gradient(135deg, #1e3d5f 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 4rem 0 2rem;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--golden);
+}
+
+.footer-text {
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: var(--golden);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--golden);
+    padding-left: 5px;
+}
+
+.newsletter-form input {
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.75rem 1.5rem;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .arabic-text {
+        font-size: 1.8rem;
+    }
+    
+    .arabic-calligraphy {
+        font-size: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .crescent-moon {
+        width: 60px;
+        height: 60px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .countdown-display {
+        gap: 1rem;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .prayer-time {
+        font-size: 1.5rem;
+    }
+    
+    .feature-icon,
+    .highlight-icon {
+        font-size: 3rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--golden), var(--teal));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--teal), var(--golden));
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}

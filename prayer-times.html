@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times - IslamicZone</title>
+     <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .prayer-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .current-prayer-card {
+            background: linear-gradient(135deg, var(--golden) 0%, #b8941f 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .current-prayer-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .current-prayer-time {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+        
+        .next-prayer-info {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .countdown-display-large {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+        
+        .prayer-info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .prayer-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .prayer-info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .prayer-info-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .prayer-info-value {
+            color: #6c757d;
+        }
+        
+        .prayer-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .prayer-table table {
+            margin: 0;
+        }
+        
+        .prayer-table thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d5f 100%);
+            color: white;
+        }
+        
+        .prayer-table thead th {
+            padding: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+        }
+        
+        .prayer-table tbody td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.1rem;
+        }
+        
+        .prayer-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .prayer-table tbody tr.active {
+            background: rgba(212, 175, 55, 0.1);
+            font-weight: 600;
+        }
+        
+        .forbidden-times {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .forbidden-times h5 {
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .forbidden-time-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .settings-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .hijri-date {
+            background: linear-gradient(135deg, var(--teal) 0%, #006666 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hijri-date-display {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .monthly-schedule {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .monthly-schedule table {
+            width: 100%;
+        }
+        
+        .monthly-schedule thead {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+        
+        .location-selector {
+            margin-bottom: 1.5rem;
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .current-prayer-time {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-display-large {
+                font-size: 2rem;
+            }
+            
+            .prayer-table thead th,
+            .prayer-table tbody td {
+                padding: 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/image/logo.png" alt="IslamicZone" class="logo-img" width="50" height="50">
+
+                <span class="brand-text">IslamicZone</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="prayer-times.html">Prayer Times</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quran.html">Qur'an</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="highlights.html">Highlights</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="prayer-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="fas fa-clock me-3"></i>Prayer Times
+                    </h1>
+                    <p class="lead">Accurate prayer times based on your location</p>
+                </div>
+            </div>
+            
+            <!-- Current Prayer Card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="current-prayer-card" id="current-prayer-card">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-white" role="status">
+                                <span class="visually-hidden">Loading prayer times...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left Column -->
+                <div class="col-lg-8">
+                    <!-- Settings Panel -->
+                    <div class="settings-panel">
+                        <h4 class="mb-4">
+                            <i class="fas fa-cog me-2"></i>Settings
+                        </h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Location</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="location-input" placeholder="Auto-detected" readonly>
+                                    <button class="btn btn-outline-primary" onclick="requestLocation()">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                                <small class="text-muted">Coordinates: <span id="coordinates-display">Loading...</span></small>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">Calculation Method</label>
+                                <select class="form-select" id="calculation-method">
+                                    <option value="MuslimWorldLeague">Muslim World League</option>
+                                    <option value="Egyptian">Egyptian</option>
+                                    <option value="Karachi">Karachi</option>
+                                    <option value="UmmAlQura">Umm Al-Qura</option>
+                                    <option value="Dubai">Dubai</option>
+                                    <option value="Qatar">Qatar</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="MoonsightingCommittee">Moonsighting Committee</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Turkey">Turkey</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">Madhab</label>
+                                <select class="form-select" id="madhab-select">
+                                    <option value="Hanafi">Hanafi</option>
+                                    <option value="Shafi">Shafi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prayer Times Table -->
+                    <div class="prayer-table">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Prayer</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prayer-times-table">
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Monthly Schedule -->
+                    <div class="monthly-schedule mt-4">
+                        <h4 class="mb-4">
+                            <i class="fas fa-calendar-alt me-2"></i>Monthly Schedule
+                        </h4>
+                        <div id="monthly-schedule-container">
+                            <div class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                    <!-- Hijri Date -->
+                    <div class="hijri-date">
+                        <h5>
+                            <i class="fas fa-calendar me-2"></i>Islamic Date
+                        </h5>
+                        <div class="hijri-date-display" id="hijri-date-display">
+                            Loading...
+                        </div>
+                        <div id="gregorian-date-display" class="opacity-75"></div>
+                    </div>
+
+                    <!-- Prayer Information -->
+                    <div class="prayer-info-card">
+                        <h5 class="mb-4">
+                            <i class="fas fa-info-circle me-2"></i>Prayer Information
+                        </h5>
+                        <div class="prayer-info-item">
+                            <span class="prayer-info-label">
+                                <i class="fas fa-map-marker-alt me-2"></i>Location
+                            </span>
+                            <span class="prayer-info-value" id="info-location">-</span>
+                        </div>
+                        <div class="prayer-info-item">
+                            <span class="prayer-info-label">
+                                <i class="fas fa-calculator me-2"></i>Method
+                            </span>
+                            <span class="prayer-info-value" id="info-method">-</span>
+                        </div>
+                        <div class="prayer-info-item">
+                            <span class="prayer-info-label">
+                                <i class="fas fa-clock me-2"></i>Timezone
+                            </span>
+                            <span class="prayer-info-value" id="info-timezone">-</span>
+                        </div>
+                        <div class="prayer-info-item">
+                            <span class="prayer-info-label">
+                                <i class="fas fa-calendar-day me-2"></i>Date
+                            </span>
+                            <span class="prayer-info-value" id="info-date">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Forbidden Prayer Times -->
+                    <div class="forbidden-times">
+                        <h5>
+                            <i class="fas fa-ban me-2"></i>Forbidden Prayer Times
+                        </h5>
+                        <div class="forbidden-time-item">
+                            <strong>After Fajr:</strong> Until sunrise
+                        </div>
+                        <div class="forbidden-time-item">
+                            <strong>At Noon:</strong> When sun is at its zenith
+                        </div>
+                        <div class="forbidden-time-item">
+                            <strong>After Asr:</strong> Until sunset
+                        </div>
+                        <div class="forbidden-time-item">
+                            <strong>During Sunset:</strong> Until Maghrib
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-mosque me-2"></i>IslamicZone
+                    </h5>
+                    <p class="footer-text">
+                        Your comprehensive Islamic knowledge hub. Learn, explore, and grow in your faith.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="prayer-times.html">Prayer Times</a></li>
+                        <li><a href="quran.html">Qur'an</a></li>
+                        <li><a href="highlights.html">Highlights</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="highlights.html#ramadan">Ramadan</a></li>
+                        <li><a href="highlights.html#hajj">Hajj & Umrah</a></li>
+                        <li><a href="highlights.html#zakat">Zakat Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-4 border-top">
+                <p class="mb-0">
+                    <i class="fas fa-heart text-danger me-1"></i>
+                    Made with love for the Muslim community
+                </p>
+                <p class="mb-0 mt-2">
+                    <small>&copy; 2024 IslamicZone. All rights reserved.</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="script.js"></script>
+    
+    <!-- Prayer Times Page Script (Uses API, no Adhan.js needed) -->
+    <script src="prayer-times.js"></script>
+</body>
+</html>
+
